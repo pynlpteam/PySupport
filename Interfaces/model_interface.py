@@ -11,9 +11,6 @@ gc.enable()
 # logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 # DEBUG = True
 
-# Init project path
-# proj_path = '/'.join(os.path.dirname(os.getcwd()).split('/')[:-1])
-# print('Proj_path = ', proj_path)
 cpu_count = multiprocessing.cpu_count()
 
 
@@ -23,8 +20,7 @@ class Doc2vecInterface(object):
         * Preprocessing
         * Similarity queries
     """
-    # models_dir = '/home/tonko22/semantic_git/semantic/models/'
-    models_dir = '/home/aviadmin/semantic_git/models/'
+    # models_dir = ' '
 
     def __init__(self, dataset_path='', model_id=None, dataset_id=None, train_params=None, workers=cpu_count):
         self.workers = workers
@@ -50,14 +46,13 @@ class Doc2vecInterface(object):
     # ======================================== #
     # ########### PREPARING DATA ############# #
     # ======================================== #
-    def load_model_from_disk(self):
-        model_path = self.models_dir + self.model_id + '/model.doc2vec'
+    def load_model_from_disk(self, path):
         try:
-            model = gensim.models.Doc2Vec.load(model_path)
+            model = gensim.models.Doc2Vec.load(path)
             model.make_cum_table()
             return model
         except FileNotFoundError:
-            print('Model file not found at {}'.format(model_path))
+            print('Model file not found at {}'.format(path))
             return None
 
     @staticmethod
