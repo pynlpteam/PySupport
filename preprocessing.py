@@ -9,7 +9,7 @@ import pandas as pd
 
 # NLP tools
 # enchant плохой велосипед, который едет только на х32
-import enchant 
+# import enchant 
 import nltk
 from nltk.corpus import stopwords
 from pymystem3 import Mystem
